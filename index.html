@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            div {
+                font-family: sans-serif;
+                font-size: 0.7em;
+            }
+
+            button {
+                margin-left: 220px;
+            }
+        </style>
+    </head>
+    <body>
+        <form>
+            <textarea id="input" rows="20" cols="80"></textarea>
+            <div>
+                No Nose
+                <input id="slider" type="range" min="0" max="10"></input>
+                Full Nose
+                <button id="nose">Nose!</button>
+            </div>
+            <textarea id="output" rows="20" cols="80"></textarea>
+        </form>
+    </body>
+        <script>
+            document.getElementById('nose').addEventListener('click', e => {
+                e.preventDefault();
+                const tags = ['i', 'b', 'u'];
+                const noseness = document.getElementById('slider').value;
+                const text = document.getElementById('input').value.split(" ").map(s => {
+                    if (noseness - Math.random() * 10 > 0) {
+                        const tag = tags[Math.floor(Math.random() * (tags.length))];
+                        return `[${tag}]${s}[/${tag}]`;
+                    } else {
+                        return Math.random() > 0.5 && noseness > 0 ? s.toUpperCase() : s;
+                    }
+                }).join(" ");
+
+                document.getElementById('output').value = text;
+            });
+        </script>
+</html>
