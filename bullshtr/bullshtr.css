@@ -1,0 +1,44 @@
+#square-container {
+  display: grid;
+  /*grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));*/
+}
+
+.square {
+  position: relative;
+  border: 5px solid #aaaaaa;
+  box-sizing: border-box;
+}
+
+.square::before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+.square .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.cell {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 3em;
+  font-family: sans-serif;
+}
+
+@media print {
+  form {
+    display: none;
+  }
+
+  #square-container {
+    width: 210mm;
+  }
+}
